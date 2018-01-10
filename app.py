@@ -42,10 +42,10 @@ def webhook():
     #print(req)
     #print("Request:")
     #print(json.dumps(req, indent=4))
-
+    print("khali5")
     res = processRequest(req)
     
-  
+    print("khali6")
 
     res = json.dumps(res, indent=4)
     print(res2)
@@ -60,7 +60,9 @@ def processRequest(req):
         print("khali3")
         return {}
     baseurl = "https://query.yahooapis.com/v1/public/yql?"
+    print("khali7")
     yql_query = makeYqlQuery(req)
+    print("khali8")
     if yql_query is None:
       
         print("khali")
@@ -83,7 +85,7 @@ def makeYqlQuery(req):
     if city is None:
         print("nocity")
         return None
-
+    print("khali9")
     return "select * from weather.forecast where woeid in (select woeid from geo.places(1) where text='nome, ak')"
             
 
