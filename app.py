@@ -37,7 +37,7 @@ app = Flask(__name__)
 def webhook():
     req = request.get_json(silent=True, force=True)
 
-    #print(request)
+    print(req)
     #print(json.dumps(req, indent=4))
 
     res = processRequest(req)
