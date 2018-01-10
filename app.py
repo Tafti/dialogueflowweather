@@ -73,9 +73,11 @@ def makeYqlQuery(req):
     parameters = result.get("parameters")
     city = parameters.get("geo-city")
     if city is None:
+        print("no city")
         return None
 
-    return "select * from weather.forecast where woeid in (select woeid from geo.places(1) where text='nome, ak')"
+    return "select * from weather.forecast where woeid in (select woeid from geo.places(1) where text="nome, ak")"
+            
 
 
 def makeWebhookResult(data):
@@ -112,8 +114,8 @@ def makeWebhookResult(data):
     return {
         "speech": speech,
         "displayText": speech,
-        # "data": data,
-        # "contextOut": [],
+        "data": data,
+        "contextOut": [],
         "source": "apiai-weather-webhook-sample"
     }
 
