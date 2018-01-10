@@ -42,7 +42,26 @@ def webhook():
 
     res = processRequest(req)
 
-    res = json.dumps(res, indent=4)
+    res = {
+                              "fulfillmentText": string,
+                              "fulfillmentMessages": [
+                                {
+                                  object(Message)
+                                }
+                              ],
+                              "source": string,
+                              "payload": {
+                                object
+                              },
+                              "outputContexts": [
+                                {
+                                  object(Context)
+                                }
+                              ],
+                              "followupEventInput": {
+                                object(EventInput)
+                              },
+                            }
     print(res)
     
     print("hello1")
