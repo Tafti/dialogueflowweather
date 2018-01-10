@@ -67,7 +67,7 @@ def processRequest(req):
       
         print("khali")
         return {}
-    yql_url = baseurl + urllib.parse.urlencode({'q': yql_query}) + "&format=json"
+    yql_url = baseurl + urllib.urlencode({'q': yql_query}) + "&format=json"
     print("khali9")
     print( yql_url)
     
@@ -85,7 +85,7 @@ def makeYqlQuery(req):
     if city is None:
         print("nocity")
         return None
-    print("khali9")
+    
     return "select * from weather.forecast where woeid in (select woeid from geo.places(1) where text='nome, ak')"
             
 
