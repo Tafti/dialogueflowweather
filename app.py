@@ -39,16 +39,13 @@ app = Flask(__name__)
 @app.route('/webhook', methods=['POST'])
 def webhook():
     req = request.get_json(silent=True, force=True)
-    #print(req)
-    #print("Request:")
-    #print(json.dumps(req, indent=4))
-    
+   
     res = processRequest(req)
     
-    print("khali6")
+   
 
     res = json.dumps(res, indent=4)
-    print(res2)
+    
     
     r = make_response(res)
     r.headers['Content-Type'] = 'application/json'
@@ -56,19 +53,7 @@ def webhook():
 
 
 def processRequest(req):
-    if req.get("result").get("action") != "yahooWeatherForecast":
-        
-        return {}
-    
-    baseurl = "https://query.yahooapis.com/v1/public/yql?"
-    yql_query = "select wind from weather.forecast where woeid=2460286"
-    yql_url = baseurl + urllib.urlparse.urlencode({'q':yql_query}) + "&format=json"
-    print("data2")
-    print(yql_url)
-    result = urllib2.urlopen(yql_url).read()
-    data = json.loads(result)
-    
-    
+   
     
     
     
@@ -76,53 +61,20 @@ def processRequest(req):
     return res
 
 
-def makeYqlQuery(req):
-    result = req.get("result")
-    parameters = result.get("parameters")
-    city = parameters.get("location").get("city")
-    if city is None:
-        print("nocity")
-        return None
-    
-    return "select * from weather.forecast where woeid in (select woeid from geo.places(1) where text='nome, ak')"
+
             
 
 
 def makeWebhookResult(data):
-    query = data.get('query')
-    if query is None:
-        return {}
+    
 
-    result = query.get('results')
-    if result is None:
-        return {}
-
-    channel = result.get('channel')
-    if channel is None:
-        return {}
-
-    item = channel.get('item')
-    location = channel.get('location')
-    units = channel.get('units')
-    if (location is None) or (item is None) or (units is None):
-        return {}
-
-    condition = item.get('condition')
-    if condition is None:
-        return {}
-
-    # print(json.dumps(item, indent=4))
-
-    speech = "Today the weather in " + location.get('city') + ": " + condition.get('text') + \
-             ", And the temperature is " + condition.get('temp') + " " + units.get('temperature')
-
-    print("Response:")
-    print(speech)
+    speech = "Today the weather in nice"
+    
 
     return {
         "speech": speech,
         "displayText": speech,
-        "data": data,
+        "data": "data",
         "contextOut": [],
         "source": "apiai-weather-webhook-sample"
     }
