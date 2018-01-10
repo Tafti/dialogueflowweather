@@ -37,7 +37,7 @@ app = Flask(__name__)
 def webhook():
     req = request.get_json(silent=True, force=True)
 
-    print(request)
+    #print(request)
     #print(json.dumps(req, indent=4))
 
     res = processRequest(req)
@@ -56,8 +56,8 @@ def processRequest(req):
     
     baseurl = "https://query.yahooapis.com/v1/public/yql?"
     yql_query = makeYqlQuery(req)
-    if yql_query is None:
-        return {}
+    #if yql_query is None:
+     #   return {}
     yql_url = baseurl + urlencode({'q': yql_query}) + "&format=json"
     result = urlopen(yql_url).read()
     data = json.loads(result)
