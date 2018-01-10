@@ -76,7 +76,7 @@ def makeYqlQuery(req):
      #   print("no city")
      #  return None
 
-    return "select * from weather.forecast where woeid in (select woeid from geo.places(1) where text="nome, ak")"
+    return "select * from weather.forecast where woeid in (select woeid from geo.places(1) where text='nome, ak')"
             
 
 
