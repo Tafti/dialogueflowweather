@@ -22,9 +22,11 @@ from urllib.parse import urlparse, urlencode
 from urllib.request import urlopen, Request
 from urllib.error import HTTPError
 
+
+
 import json
 import os
-import urllib2
+
 
 from flask import Flask
 from flask import request
@@ -58,7 +60,7 @@ def processRequest(req):
     if yql_query is None:
         return {}
     yql_url = baseurl + urllib.urlencode({'q': yql_query}) + "&format=json"
-    result = urllib2.urlopen(yql_url).read()
+    result = urllib.request.urlopen(yql_url).read()
     data = json.loads(result)
     print(data['query']['results'])
     res = makeWebhookResult(data)
