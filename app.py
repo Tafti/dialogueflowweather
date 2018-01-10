@@ -44,6 +44,9 @@ def webhook():
 
     res = json.dumps(res, indent=4)
     print(res)
+    
+    print("hello1")
+    
     r = make_response(res)
     r.headers['Content-Type'] = 'application/json'
     return r
@@ -59,6 +62,10 @@ def processRequest(req):
     result = urlopen(yql_url).read()
     data = json.loads(result)
     res = makeWebhookResult(data)
+    
+    print("hello2")
+    
+    
     return res
 
 
@@ -68,7 +75,7 @@ def makeYqlQuery(req):
     city = parameters.get("geo-city")
     if city is None:
         return None
-
+    print("hello3")
     return "select * from weather.forecast where woeid in (select woeid from geo.places(1) where text='" + city + "')"
 
 
@@ -96,6 +103,9 @@ def makeWebhookResult(data):
         return {}
 
     print(json.dumps(item, indent=4))
+    
+    
+    print("hello4")
 
     #speech = "Today the weather in " + location.get('city') + ": " + condition.get('text') + \
              #", And the temperature is " + condition.get('temp') + " " + units.get('temperature')
