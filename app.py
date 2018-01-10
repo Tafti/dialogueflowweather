@@ -37,31 +37,18 @@ app = Flask(__name__)
 def webhook():
     req = request.get_json(silent=True, force=True)
 
-    print(req)
+    #print(req)
     #print(json.dumps(req, indent=4))
 
-    res = processRequest(req)
-
+  
     res = {
-                              "fulfillmentText": string,
-                              "fulfillmentMessages": [
-                                {
-                                  object(Message)
-                                }
-                              ],
-                              "source": string,
-                              "payload": {
-                                object
-                              },
-                              "outputContexts": [
-                                {
-                                  object(Context)
-                                }
-                              ],
-                              "followupEventInput": {
-                                object(EventInput)
-                              },
-                            }
+		"iphone" : 2007,
+		"iphone 3G" : 2008,
+		"iphone 3GS" : 2009,
+		"iphone 4" : 2010,
+		"iphone 4S" : 2011,
+		"iphone 5" : 2012
+	     }
     print(res)
     
     print("hello1")
